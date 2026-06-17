@@ -32,8 +32,21 @@ init_db()
 # ==========================================
 # 2. 基本設定（環境に合わせて書き換えてね）
 # ==========================================
-BOT_TOKEN = "ここにあなたのボットのトークンを貼り付けてね"
-ALERT_ROLE_NAME = "警戒"
+import os  # コードの一番上（import文が集まるところ）にこれを追加してね
+
+# ==========================================
+# 8. ボットの起動部分（書き換え）
+# ==========================================
+# Renderの設定画面から「DISCORD_BOT_TOKEN」という名前の秘密情報を読み込む
+BOT_TOKEN = os.getenv("DISCORD_BOT_TOKEN")
+
+if not BOT_TOKEN:
+    print("❌ エラー: Renderの設定画面で DISCORD_BOT_TOKEN が設定されていません！")
+    exit(1)
+
+if __name__ == "__main__":
+    asyncio.run(main())
+    ALERT_ROLE_NAME = "警戒"
 LOG_CHANNEL_NAME = "防犯ログ"
 VERIFY_CHANNEL_NAME = "認証部屋"
 SKIP_ROLE_NAME = "管理者専用ロール"
@@ -43,7 +56,7 @@ CAPTCHA_ANSWER = "1234"
 
 BAD_WORDS = ["荒らし", "あらし", "cheat", "チート", "スパム"]
 HONEYPOT_USER_IDS = [123456789012345678, 987654321098765432]
-REAL_ADMIN_NAMES = ["Mikan", "みかん"]
+REAL_ADMIN_NAMES = ["Mikancat10", "みかんねこ"]
 
 # システム内部用変数
 user_msg_times = {}
